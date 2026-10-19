@@ -445,6 +445,200 @@ footer strong{color:#fff}
   }
 }
 
+
+/* MYHUB SIX SAMPLE IMAGE GALLERY V1 */
+
+.project-gallery {
+  padding: 12px;
+  background: linear-gradient(145deg, #0c1830, #081225);
+  border-bottom: 1px solid rgba(52, 160, 255, .25);
+}
+
+.gallery-main {
+  position: relative;
+  height: 205px;
+  overflow: hidden;
+  border: 1px solid rgba(56, 170, 255, .45);
+  border-radius: 14px;
+  background: #071020;
+  box-shadow: 0 0 20px rgba(0, 130, 255, .12);
+}
+
+.gallery-main-image {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  cursor: zoom-in;
+  transition: transform .35s ease, opacity .2s ease;
+}
+
+.gallery-main-image:hover {
+  transform: scale(1.035);
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 36px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  color: #fff;
+  font-size: 27px;
+  line-height: 1;
+  background: rgba(4, 16, 38, .82);
+  border: 1px solid rgba(93, 203, 255, .65);
+  border-radius: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.gallery-prev { left: 8px; }
+.gallery-next { right: 8px; }
+
+.gallery-arrow:hover {
+  background: #087de7;
+  box-shadow: 0 0 16px rgba(0, 174, 255, .4);
+}
+
+.gallery-count {
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  z-index: 2;
+  padding: 5px 9px;
+  color: #dff8ff;
+  background: rgba(4, 14, 32, .8);
+  border: 1px solid rgba(85, 190, 255, .4);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.gallery-sample-label {
+  position: absolute;
+  left: 9px;
+  bottom: 9px;
+  z-index: 2;
+  padding: 5px 8px;
+  color: #c9f6ff;
+  background: rgba(4, 14, 32, .78);
+  border: 1px solid rgba(70, 185, 255, .35);
+  border-radius: 7px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+.gallery-thumbs {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding: 10px 1px 3px;
+  scrollbar-width: thin;
+  scrollbar-color: #1e70c7 #0b1730;
+}
+
+.gallery-thumb {
+  flex: 0 0 60px;
+  width: 60px;
+  height: 44px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(94, 140, 193, .45);
+  border-radius: 8px;
+  background: #0b1730;
+  cursor: pointer;
+  opacity: .72;
+  transition: opacity .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.gallery-thumb img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.gallery-thumb:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.gallery-thumb.active {
+  opacity: 1;
+  border: 2px solid #3ddcff;
+  box-shadow: 0 0 12px rgba(0, 184, 255, .38);
+}
+
+.sample-gallery-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 18px;
+  background: rgba(2, 7, 19, .94);
+  backdrop-filter: blur(12px);
+}
+
+.sample-gallery-lightbox.open {
+  display: flex;
+}
+
+.sample-lightbox-image {
+  display: block;
+  max-width: min(1100px, 100%);
+  max-height: 78vh;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  border: 1px solid rgba(57, 190, 255, .65);
+  border-radius: 12px;
+  box-shadow: 0 0 38px rgba(0, 130, 255, .2);
+}
+
+.sample-lightbox-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  color: #fff;
+  font-size: 30px;
+  background: #102443;
+  border: 1px solid #35baff;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.sample-lightbox-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 12px;
+  right: 12px;
+  text-align: center;
+  color: #9cb8d8;
+  font-size: 12px;
+}
+
+@media (max-width: 600px) {
+  .project-gallery { padding: 9px; }
+  .gallery-main { height: 175px; }
+  .gallery-thumb { flex-basis: 53px; width: 53px; height: 40px; }
+  .gallery-arrow { width: 32px; height: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-main-image,
+  .gallery-thumb { transition: none !important; }
+}
+
 </style>
 </head>
 <body data-page-category="All">
@@ -760,12 +954,92 @@ function artMarkup(p){
  }
  return `<div class="project-art ${klass}"><div class="art-screen"><div class="screen-top"><i class="screen-dot"></i><i class="screen-dot"></i><i class="screen-dot"></i><span class="screen-brand">${escapeHtml(p.name.toUpperCase().slice(0,24))}</span></div><div class="screen-title">${escapeHtml(p.subtitle)}</div><div class="screen-line"></div><div class="screen-line short"></div><div class="screen-buttons"><i></i><i></i></div></div></div>`;
 }
+
+/* MYHUB SAMPLE GALLERY LOGIC */
+const sampleGallerySets = {"Web":["photo-1460925895917-afdab827c52f","photo-1498050108023-c5249f4df085","photo-1467232004584-a241de8bcf5d","photo-1547658719-da2b51169166","photo-1519389950473-47ba0277781c","photo-1551288049-bebda4e38f71"],"Apps":["photo-1512941937669-90a1b58e7e9c","photo-1511707171634-5f897ff02aa9","photo-1512499617640-c74ae3a79d37","photo-1512428559087-560fa5ceab42","photo-1551650975-87deedd944c3","photo-1523206489230-c012c64b2b48"],"UI/UX":["photo-1558655146-9f40138edfeb","photo-1559028012-481c04fa702d","photo-1559028006-448665bd7c7f","photo-1557683316-973673baf926","photo-1545235617-9465d2a55698","photo-1550745165-9bc0b252726f"],"Dashboards":["photo-1551288049-bebda4e38f71","photo-1460925895917-afdab827c52f","photo-1553877522-43269d4ea984","photo-1556761175-b413da4baf72","photo-1552664730-d307ca884978","photo-1551836022-d5d88e9218df"],"Templates":["photo-1515879218367-8466d910aaa4","photo-1498050108023-c5249f4df085","photo-1519389950473-47ba0277781c","photo-1555066931-4365d14bab8c","photo-1518770660439-4636190af475","photo-1550745165-9bc0b252726f"],"AI Tools":["photo-1485827404703-89b55fcc595e","photo-1535378620166-273708d01e4a","photo-1620712943543-bcc4688e7485","photo-1677442136019-21780ecad995","photo-1676299081847-824916de030a","photo-1555255707-c07966088b7b"],"E-commerce":["photo-1556742049-0cfed4f6a45d","photo-1523275335684-37898b6baf30","photo-1555529669-e69e7aa0ba9a","photo-1542291026-7eec264c27ff","photo-1472851294608-062f824d29cc","photo-1607082349566-187342175e2f"],"Business Tools":["photo-1556761175-b413da4baf72","photo-1553877522-43269d4ea984","photo-1497366754035-f200968a6e72","photo-1521737711867-e3b973baf902","photo-1497366216548-37526070297c","photo-1552664730-d307ca884978"],"default":["photo-1460925895917-afdab827c52f","photo-1498050108023-c5249f4df085","photo-1467232004584-a241de8bcf5d","photo-1547658719-da2b51169166","photo-1519389950473-47ba0277781c","photo-1551288049-bebda4e38f71"]};
+
+function sampleGalleryImages(p) {
+  const ids = sampleGallerySets[p.category] || sampleGallerySets.default;
+  return ids.map(id =>
+    "https://images.unsplash.com/" + id + "?auto=format&fit=crop&w=900&q=80"
+  );
+}
+
+function galleryMarkup(p) {
+  const images = sampleGalleryImages(p);
+  const alt = escapeHtml(p.name);
+
+  return `<div class="project-gallery"
+      data-project-id="${escapeHtml(p.id)}"
+      data-active-index="0">
+    <div class="gallery-main">
+      <img class="gallery-main-image"
+        data-gallery-main
+        src="${images[0]}"
+        alt="${alt} sample preview 1"
+        loading="lazy">
+      <span class="gallery-count" data-gallery-count>1 / 6</span>
+      <button class="gallery-arrow gallery-prev"
+        type="button" data-gallery-step="-1"
+        aria-label="Previous photo">‹</button>
+      <button class="gallery-arrow gallery-next"
+        type="button" data-gallery-step="1"
+        aria-label="Next photo">›</button>
+      <span class="gallery-sample-label">SAMPLE PREVIEWS</span>
+    </div>
+    <div class="gallery-thumbs" aria-label="Choose preview image">
+      ${images.map((src, i) => `
+        <button type="button"
+          class="gallery-thumb ${i === 0 ? 'active' : ''}"
+          data-gallery-index="${i}"
+          aria-label="Show preview ${i + 1}"
+          aria-pressed="${i === 0}">
+          <img src="${src}" alt="" loading="lazy">
+        </button>
+      `).join("")}
+    </div>
+  </div>`;
+}
+
+function openSampleGalleryLightbox(src, alt) {
+  let box = document.getElementById("sampleGalleryLightbox");
+
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "sampleGalleryLightbox";
+    box.className = "sample-gallery-lightbox";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.setAttribute("aria-label", "Large project preview");
+    box.innerHTML = `
+      <button class="sample-lightbox-close" type="button"
+        aria-label="Close image">×</button>
+      <img class="sample-lightbox-image" alt="">
+      <p class="sample-lightbox-hint">Tap outside or press Escape to close</p>`;
+    document.body.appendChild(box);
+
+    box.addEventListener("click", event => {
+      if (event.target === box ||
+          event.target.closest(".sample-lightbox-close")) {
+        box.classList.remove("open");
+        document.body.classList.remove("locked");
+      }
+    });
+  }
+
+  const img = box.querySelector(".sample-lightbox-image");
+  img.src = src;
+  img.alt = alt;
+  box.classList.add("open");
+  document.body.classList.add("locked");
+}
+
 function cardMarkup(p){
  const isLive=Boolean(p.demo);
  const statusClass=isLive?"status live":"status";
  const statusText=isLive?"Demo available":p.status;
  return `<article class="project-card">
-  ${artMarkup(p)}
+  ${galleryMarkup(p)}
   <div class="project-body">
    <div class="project-top"><h3>${escapeHtml(p.name)}</h3><span class="${statusClass}">${escapeHtml(statusText)}</span></div>
    <p>${escapeHtml(p.description)}</p>
@@ -804,6 +1078,57 @@ categoryButtons.forEach(button=>{
   });
 });
 search.addEventListener("input",renderProjects);
+
+grid.addEventListener("click", e => {
+  const control = e.target.closest(
+    "[data-gallery-index], [data-gallery-step], [data-gallery-main]"
+  );
+  if (!control) return;
+
+  const gallery = control.closest(".project-gallery");
+  if (!gallery) return;
+
+  const project = projects.find(p => p.id === gallery.dataset.projectId);
+  if (!project) return;
+
+  const images = sampleGalleryImages(project);
+  let index = Number(gallery.dataset.activeIndex || 0);
+
+  if (control.hasAttribute("data-gallery-index")) {
+    index = Number(control.dataset.galleryIndex);
+  } else if (control.hasAttribute("data-gallery-step")) {
+    index = (index + Number(control.dataset.galleryStep) + images.length)
+      % images.length;
+  } else if (control.hasAttribute("data-gallery-main")) {
+    const currentImage = gallery.querySelector("[data-gallery-main]");
+    openSampleGalleryLightbox(currentImage.src, currentImage.alt);
+    return;
+  }
+
+  index = Math.max(0, Math.min(images.length - 1, index));
+  gallery.dataset.activeIndex = String(index);
+
+  const main = gallery.querySelector("[data-gallery-main]");
+  main.src = images[index];
+  main.alt = project.name + " sample preview " + (index + 1);
+
+  gallery.querySelector("[data-gallery-count]").textContent =
+    (index + 1) + " / " + images.length;
+
+  gallery.querySelectorAll(".gallery-thumb").forEach((thumb, i) => {
+    thumb.classList.toggle("active", i === index);
+    thumb.setAttribute("aria-pressed", String(i === index));
+  });
+});
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    const box = document.getElementById("sampleGalleryLightbox");
+    if (box) box.classList.remove("open");
+    document.body.classList.remove("locked");
+  }
+});
+
 grid.addEventListener("click",e=>{
  const button=e.target.closest("[data-details]");
  if(button)openDetails(button.dataset.details);
