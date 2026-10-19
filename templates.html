@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07172f">
+<meta name="description" content="MyHub Digital Solutions by Amila Ruwan. Explore websites, apps, UI/UX, dashboards and digital products with project demos.">
+<title>MyHub Digital Solutions | Amila Ruwan</title>
+<style>
+:root{
+ --blue:#1769ff;--blue2:#55a0ff;--navy:#07172f;--ink:#10203b;
+ --muted:#65758d;--bg:#f4f7fc;--line:#e0e8f5;--white:#fff;
+ --green:#16a66a;--shadow:0 16px 45px #102e6010
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+body.locked{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+.container{width:min(1160px,91%);margin:auto}
+nav{position:sticky;top:0;z-index:30;background:#ffffffed;backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:900;letter-spacing:-.5px}
+.brand-icon{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(140deg,#3187ff,#0648d9);box-shadow:0 7px 18px #1769ff35;font-size:17px}
+.nav-links{display:flex;align-items:center;gap:20px;font-size:12px;font-weight:800}
+.nav-links a:not(.btn):hover{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 17px;border:1px solid var(--blue);border-radius:12px;background:var(--blue);color:#fff;font-size:12px;font-weight:850;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 9px 25px #1769ff30}
+.btn.light{background:#fff;color:var(--blue);border-color:#d4e1f7}
+.btn.glass{background:#ffffff0e;color:#fff;border-color:#ffffff50}
+.btn.small{padding:9px 12px}
+.menu-toggle{display:none;background:white;border:1px solid var(--line);border-radius:10px;padding:8px 11px;color:var(--navy)}
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 80% 20%,#1769ff60,transparent 34%),radial-gradient(ellipse at 10% 100%,#0874ff35,transparent 38%),linear-gradient(125deg,#061329,#082b60 65%,#0759df);color:#fff;padding:75px 0 90px}
+.hero:before{content:"";position:absolute;width:480px;height:480px;border:1px solid #ffffff14;border-radius:50%;right:-130px;bottom:-270px;box-shadow:0 0 0 45px #ffffff06,0 0 0 90px #ffffff04;pointer-events:none}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:55px}
+.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--blue);font-weight:950}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #ffffff35;background:#ffffff0b;border-radius:40px;color:#d8e8ff;letter-spacing:1px}
+.dot{width:7px;height:7px;background:#55e6a5;border-radius:50%;box-shadow:0 0 12px #55e6a5}
+h1{font-size:clamp(42px,6.5vw,76px);line-height:1.03;letter-spacing:-3px;margin:23px 0 16px}
+h1 span{color:#79b6ff}
+.hero h2{font-size:clamp(18px,2.3vw,25px);margin:0;font-weight:700}
+.hero-copy{max-width:550px;color:#d1e2ff;font-size:14px;margin:19px 0}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.hero-note{font-size:11px;color:#a9c8f9;margin-top:20px}
+.profile-stage{position:relative;min-height:330px;display:grid;place-items:center}
+.profile-orbit{position:absolute;width:280px;height:280px;border:1px solid #ffffff24;border-radius:50%;animation:spin 24s linear infinite}
+.profile-orbit:before,.profile-orbit:after{content:"";position:absolute;inset:25px;border:1px dashed #ffffff22;border-radius:50%}
+.profile-orbit:after{inset:52px;border-style:solid}
+.avatar{position:relative;display:grid;place-items:center;width:205px;height:205px;border-radius:43% 57% 52% 48%;background:linear-gradient(145deg,#ffffff27,#ffffff07);border:1px solid #ffffff65;box-shadow:inset 0 0 40px #ffffff10,0 25px 70px #00112d70;transform:rotate(-5deg)}
+.avatar-inner{width:150px;height:150px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(145deg,#3187ff,#072c76);border:2px solid #a7ceff70;color:white;font-size:56px;font-weight:900;letter-spacing:-5px;text-shadow:0 8px 25px #00133d80;transform:rotate(5deg)}
+.avatar-caption{position:absolute;bottom:18px;text-align:center;color:#d4e5ff;font-size:11px;letter-spacing:1px}
+.float-tag{position:absolute;z-index:2;display:flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid #ffffff35;background:#ffffff13;backdrop-filter:blur(12px);border-radius:13px;font-size:11px;font-weight:850;box-shadow:0 10px 25px #00112d30}
+.float-tag span{font-size:18px}
+.float-one{top:22px;right:0}.float-two{bottom:43px;left:-3px}
+@keyframes spin{to{transform:rotate(355deg)}}
+.stats{position:relative;margin-top:-29px;z-index:3}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow);text-align:center}
+.stat strong{display:block;color:var(--blue);font-size:22px;line-height:1.35}
+.stat span{font-size:11px;color:var(--muted)}
+section{padding:75px 0}
+.section-head{max-width:670px;margin:0 auto 34px;text-align:center}
+.section-head h2{font-size:clamp(29px,4vw,42px);line-height:1.15;letter-spacing:-1.5px;margin:10px 0}
+.section-head p{font-size:13px;color:var(--muted);margin:0}
+.category-strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.category{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-height:120px;padding:17px 14px;border:1px solid var(--line);border-radius:16px;background:#fff;color:var(--ink);text-align:left;transition:transform .2s,border-color .2s,box-shadow .2s}
+.category:hover,.category.active{transform:translateY(-3px);border-color:#83b1ff;box-shadow:0 12px 28px #1769ff13}
+.category.active{background:linear-gradient(145deg,#eef5ff,#fff)}
+.category-icon{width:39px;height:39px;display:grid;place-items:center;background:#eaf2ff;color:var(--blue);border-radius:12px;font-size:20px}
+.category strong{font-size:12px}
+.category small{font-size:10px;color:var(--muted);margin-top:-9px}
+.projects-section{background:var(--bg)}
+.project-toolbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:22px}
+.project-count{font-size:12px;color:var(--muted)}
+.search{width:min(260px,60%);padding:11px 13px;border:1px solid #dce5f2;border-radius:11px;background:#fff;outline:none;font-size:12px}
+.search:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1769ff12}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.project-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:19px;background:#fff;box-shadow:0 5px 20px #102e6006;transition:transform .25s,box-shadow .25s}
+.project-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px #102e6015}
+.project-art{height:175px;position:relative;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#061b43,#0871f6)}
+.project-art:before,.project-art:after{content:"";position:absolute;width:200px;height:200px;border:1px solid #ffffff27;border-radius:50%;box-shadow:0 0 0 25px #ffffff07}
+.project-art:after{width:135px;height:135px}
+.art-cyan{background:linear-gradient(135deg,#073b52,#06a9b5)}
+.art-amber{background:linear-gradient(135deg,#482b0d,#f3a63a)}
+.art-purple{background:linear-gradient(135deg,#20205e,#786bff)}
+.art-pink{background:linear-gradient(135deg,#481d45,#df65b4)}
+.art-green{background:linear-gradient(135deg,#073d36,#12a777)}
+.art-screen{position:relative;z-index:1;width:77%;max-width:280px;border:1px solid #ffffffaa;border-radius:12px;padding:15px;background:#ffffffed;color:#10203b;box-shadow:0 15px 38px #00133d55;transform:rotate(-2deg)}
+.screen-top{display:flex;align-items:center;gap:4px;margin-bottom:11px}
+.screen-dot{width:5px;height:5px;border-radius:50%;background:#afc4e2}
+.screen-brand{font-size:10px;font-weight:950;color:#0866f5;margin-left:4px}
+.screen-title{font-size:14px;font-weight:900;line-height:1.2;margin:7px 0}
+.screen-line{height:5px;border-radius:8px;background:#dce8fa;margin-top:7px;width:84%}
+.screen-line.short{width:53%}
+.screen-buttons{display:flex;gap:6px;margin-top:11px}
+.screen-buttons i{height:13px;width:52px;border-radius:4px;background:#0866f5}
+.screen-buttons i+i{background:#dce8fa}
+.phone-mock{position:relative;z-index:1;width:85px;height:125px;border:4px solid #e0eaff;border-radius:17px;background:#fff;padding:15px 7px 7px;box-shadow:0 14px 30px #00133d50}
+.phone-mock+.phone-mock{margin-left:-13px;transform:translateY(10px)}
+.phone-mock:before{content:"";position:absolute;top:5px;left:28px;width:18px;height:3px;background:#b7c8e0;border-radius:5px}
+.phone-label{font-size:7px;font-weight:950;color:#1769ff}
+.phone-row{height:19px;background:#eaf2ff;border-radius:4px;margin-top:7px}
+.project-body{padding:18px}
+.project-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.project-top h3{font-size:16px;line-height:1.35;letter-spacing:-.4px;margin:0}
+.status{display:inline-flex;align-items:center;gap:5px;flex-shrink:0;font-size:9px;font-weight:850;padding:5px 8px;border-radius:30px;background:#fff3d9;color:#875700}
+.status.live{background:#e3f8ed;color:#087c48}
+.status.demo{background:#eaf2ff;color:#1456bb}
+.project-body>p{font-size:12px;line-height:1.65;color:var(--muted);min-height:59px;margin:12px 0}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0}
+.pill{font-size:9px;font-weight:800;padding:5px 7px;border-radius:6px;background:#edf4ff;color:#1752a9}
+.project-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
+.project-actions .btn{padding:9px 11px;font-size:10px}
+.project-actions .details-btn{border:1px solid var(--line);border-radius:10px;background:white;color:#23405f;padding:9px 11px;font-size:10px;font-weight:850}
+.empty-state{grid-column:1/-1;text-align:center;padding:40px 15px;border:1px dashed #bfd0e8;border-radius:17px;background:#fff;color:var(--muted)}
+.slider-shell{position:relative;overflow:hidden;border-radius:23px;background:linear-gradient(120deg,#07172f,#0b3978 65%,#1769ff);padding:30px;color:#fff}
+.slider-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:20px}
+.slider-top h3{font-size:22px;margin:4px 0 0;letter-spacing:-.7px}
+.slider-top .eyebrow{color:#9bc8ff}
+.slider-controls{display:flex;gap:8px}
+.slider-controls button{width:37px;height:37px;border:1px solid #ffffff45;border-radius:11px;background:#ffffff10;color:#fff;font-size:19px}
+.feature-slide{display:grid;grid-template-columns:1fr .85fr;align-items:center;gap:28px;min-height:220px;animation:slideIn .35s ease}
+@keyframes slideIn{from{opacity:.35;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+.feature-tag{font-size:10px;color:#a8cbff;letter-spacing:1px;font-weight:900;text-transform:uppercase}
+.feature-slide h3{font-size:clamp(25px,3vw,37px);line-height:1.15;letter-spacing:-1px;margin:12px 0}
+.feature-slide p{font-size:13px;color:#d4e4ff;max-width:430px}
+.feature-art{min-height:165px;border:1px solid #ffffff3d;border-radius:17px;background:linear-gradient(145deg,#ffffff1c,#ffffff05);display:grid;place-items:center;overflow:hidden;position:relative}
+.feature-art:before{content:"";position:absolute;width:160px;height:160px;border:1px solid #ffffff2d;border-radius:50%;box-shadow:0 0 0 25px #ffffff07,0 0 0 50px #ffffff05}
+.feature-icon{position:relative;font-size:64px;filter:drop-shadow(0 10px 25px #001b50)}
+.slide-dots{display:flex;gap:7px;margin-top:17px}
+.slide-dots button{width:7px;height:7px;border:0;border-radius:10px;background:#ffffff55;padding:0}
+.slide-dots button.active{width:23px;background:#fff}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
+.about-copy h2{font-size:clamp(28px,4vw,39px);line-height:1.2;letter-spacing:-1.2px;margin:12px 0}
+.muted{color:var(--muted)}
+.info-panel{padding:25px;border:1px solid var(--line);border-radius:19px;background:var(--bg)}
+.info-panel h3{margin:0 0 12px;font-size:17px}
+.service{display:flex;align-items:flex-start;gap:12px;padding:10px 0}
+.service-icon{flex-shrink:0;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:#e2edff;color:var(--blue);font-weight:950}
+.service b{display:block;font-size:12px}
+.service small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.skill{padding:17px 10px;border:1px solid var(--line);border-radius:14px;background:#fff;text-align:center;font-size:12px;font-weight:850}
+.skill-icon{display:block;font-size:25px;color:var(--blue);margin-bottom:5px}
+.skill small{display:block;color:var(--muted);font-size:10px;font-weight:500;margin-top:4px}
+.cta{padding:34px;border-radius:22px;background:linear-gradient(120deg,#07172f,#0759e8);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.cta h2{font-size:clamp(25px,4vw,34px);line-height:1.2;margin:8px 0}
+.cta p{font-size:13px;color:#d3e3ff;margin-bottom:0}
+.cta .eyebrow{color:#9bc8ff}
+.contact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.contact-item{padding:21px;border:1px solid var(--line);border-radius:16px;overflow-wrap:anywhere}
+.contact-icon{font-size:23px}
+.contact-item h3{font-size:14px;margin:8px 0 3px}
+.contact-item p{font-size:11px;color:var(--muted);margin:0 0 12px}
+.contact-item a{font-size:11px;font-weight:850;color:var(--blue)}
+footer{padding:25px 0;background:#06142b;color:#c9d8f4;text-align:center;font-size:11px}
+footer strong{color:#fff}
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:18px;background:#041127bb;backdrop-filter:blur(7px)}
+.modal.open{display:flex}
+.modal-box{position:relative;width:min(650px,100%);max-height:88vh;overflow:auto;border-radius:21px;background:#fff;box-shadow:0 25px 90px #0005}
+.modal-head{padding:24px 24px 18px;background:linear-gradient(120deg,#07172f,#0b3978);color:#fff}
+.modal-head .eyebrow{color:#a9ccff}
+.modal-head h2{font-size:25px;line-height:1.2;margin:8px 40px 7px 0}
+.modal-head p{font-size:12px;color:#d3e3ff;margin:0}
+.modal-close{position:absolute;right:15px;top:15px;width:36px;height:36px;border:1px solid #ffffff55;border-radius:11px;background:#ffffff12;color:#fff;font-size:22px}
+.modal-content{padding:22px}
+.detail-block{margin-bottom:18px}
+.detail-block h3{font-size:13px;margin:0 0 7px}
+.detail-block p,.detail-block li{font-size:12px;color:#53657e}
+.detail-block ul{padding-left:20px;margin:6px 0}
+.detail-tags{display:flex;flex-wrap:wrap;gap:7px}
+.detail-tag{padding:6px 9px;background:#edf4ff;color:#1752a9;border-radius:7px;font-size:10px;font-weight:800}
+.modal-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
+.notice{font-size:11px;padding:11px 12px;background:#fff6df;border-radius:10px;color:#79550b}
+@media(max-width:900px){
+ .nav-links{gap:12px}
+ .nav-links a{font-size:11px}
+ .category-strip{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .hero-grid{gap:25px}
+}
+@media(max-width:650px){
+ .nav-inner{min-height:65px}
+ .brand{font-size:13px}
+ .brand-icon{width:35px;height:35px}
+ .menu-toggle{display:block}
+ .nav-links{display:none;position:absolute;top:64px;left:0;right:0;padding:16px 5%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 12px 20px #102e600c;flex-direction:column;align-items:stretch;gap:0}
+ .nav-links.open{display:flex}
+ .nav-links a{padding:11px 4px;font-size:13px}
+ .nav-links .btn{margin-top:8px;text-align:center}
+ .hero{padding:49px 0 65px}
+ .hero-grid{grid-template-columns:1fr;gap:10px}
+ h1{font-size:clamp(43px,12vw,63px);letter-spacing:-2px}
+ .hero-copy{font-size:13px}
+ .profile-stage{min-height:245px}
+ .profile-orbit{width:220px;height:220px}
+ .avatar{width:160px;height:160px}
+ .avatar-inner{width:115px;height:115px;font-size:45px}
+ .float-one{right:0;top:9px}.float-two{left:0;bottom:23px}
+ .stats-grid{padding:15px 6px;gap:4px}
+ .stat strong{font-size:19px}.stat span{font-size:9px}
+ section{padding:53px 0}
+ .category-strip{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+ .category{min-height:103px;padding:12px 10px;gap:8px}
+ .category-icon{width:34px;height:34px;font-size:18px}
+ .category strong{font-size:11px}
+ .category small{font-size:9px}
+ .section-head{margin-bottom:26px}
+ .project-grid{grid-template-columns:1fr}
+ .project-art{height:170px}
+ .project-body>p{min-height:0}
+ .project-toolbar{align-items:stretch;flex-direction:column}
+ .search{width:100%}
+ .slider-shell{padding:21px}
+ .slider-top h3{font-size:19px}
+ .feature-slide{grid-template-columns:1fr;gap:16px}
+ .feature-art{min-height:125px;grid-row:1}
+ .feature-icon{font-size:50px}
+ .feature-slide h3{font-size:27px}
+ .about-grid{grid-template-columns:1fr;gap:20px}
+ .skills-grid{grid-template-columns:repeat(2,1fr)}
+ .cta{padding:25px;align-items:flex-start;flex-direction:column}
+ .contact-grid{grid-template-columns:1fr}
+}
+@media(max-width:360px){
+ .category-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .hero-actions .btn{width:100%}
+ .project-top{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+@media print{
+ @page{size:A4;margin:12mm}
+ *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+ nav,.no-print,.slider-controls,.slide-dots,.modal{display:none!important}
+ body{font-size:10pt}
+ .container{width:100%;max-width:none}
+ .hero{padding:20px 0;background:#eef5ff!important;color:#07172f}
+ .hero .eyebrow{color:#0759e8;border-color:#bfd6ff}
+ .hero-copy,.hero-note{color:#334155}
+ .hero-grid{grid-template-columns:1fr}
+ .profile-stage{display:none}
+ h1{font-size:32pt}
+ h1 span{color:#0866f5}
+ .stats{margin:10px 0}
+ section{padding:22px 0}
+ .category-strip{grid-template-columns:repeat(3,1fr)}
+ .project-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+ .project-card,.info-panel,.contact-item{break-inside:avoid;box-shadow:none}
+ .project-art{height:95px}
+ .project-body{padding:11px}
+ .project-body>p{min-height:0}
+ .slider-shell,.cta{background:#eef5ff!important;color:#07172f;padding:17px}
+ .slider-shell p,.cta p{color:#334155}
+ .feature-art{min-height:100px}
+ .about-grid{grid-template-columns:1fr 1fr}
+ .skills-grid{grid-template-columns:repeat(4,1fr)}
+ .contact-grid{grid-template-columns:repeat(3,1fr)}
+ footer{background:#fff;color:#334155}
+ footer strong{color:#07172f}
+}
+</style>
+</head>
+<body data-page-category="Templates">
+<nav>
+ <div class="container nav-inner">
+  <a href="#home" class="brand"><span class="brand-icon">&lt;/&gt;</span><span>MyHub Digital Solutions</span></a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+  <div class="nav-links" id="navLinks">
+   <a href="#home">Home</a>
+   <a href="#categories">Categories</a>
+   <a href="#featured">Featured</a>
+   <a href="#projects">Projects</a>
+   <a href="#about">About</a>
+   <a href="#contact" class="btn">Contact ↗</a>
+  </div>
+ </div>
+</nav>
+
+<header class="hero" id="home">
+ <div class="container hero-grid">
+  <div>
+   <span class="eyebrow"><i class="dot"></i> BUILD · EXPLORE · EXPERIENCE</span>
+   <h1>Ideas into<br><span>Digital Reality.</span></h1>
+   <h2>I'm Amila Ruwan — Digital Developer.</h2>
+   <p class="hero-copy">Explore websites, mobile applications, UI/UX concepts and practical business tools. Discover what each project does, who it helps and how to try a live demo when available.</p>
+   <div class="hero-actions">
+    <a class="btn" href="#projects">Explore Projects ↗</a>
+    <a class="btn glass" href="#contact">Contact Me</a>
+   </div>
+   <p class="hero-note">Independent Developer · Sri Lanka · MyHub Digital Solutions</p>
+  </div>
+  <div class="profile-stage" aria-label="Abstract developer avatar">
+   <div class="profile-orbit"></div>
+   <div class="avatar"><div class="avatar-inner">&lt;/&gt;</div></div>
+   <div class="float-tag float-one"><span>✦</span> Web Experiences</div>
+   <div class="float-tag float-two"><span>▣</span> Mobile Applications</div>
+   <div class="avatar-caption">DESIGN · DEVELOP · DELIVER</div>
+  </div>
+ </div>
+</header>
+
+<div class="container stats">
+ <div class="stats-grid">
+  <div class="stat"><strong>Web</strong><span>Websites & Platforms</span></div>
+  <div class="stat"><strong>Apps</strong><span>Mobile Applications</span></div>
+  <div class="stat"><strong>Digital</strong><span>Business Solutions</span></div>
+ </div>
+</div>
+
+<section id="categories">
+ <div class="container">
+  <div class="section-head">
+   <span class="eyebrow">Explore by Category</span>
+   <h2>Find the Right Digital Solution</h2>
+   <p>Choose a category to find relevant projects. Each project includes its purpose, features, tools and demo availability.</p>
+  </div>
+  <div class="category-strip">
+   <a class="category active" data-category="All" href="index.html"><span class="category-icon">✦</span><strong>All Projects</strong><small>Explore everything</small></a>
+   <a class="category" data-category="Web" href="websites.html"><span class="category-icon">⌘</span><strong>Websites</strong><small>Web platforms</small></a>
+   <a class="category" data-category="Apps" href="mobile-apps.html"><span class="category-icon">▣</span><strong>Mobile Apps</strong><small>Android & mobile</small></a>
+   <a class="category" data-category="UI/UX" href="ui-ux.html"><span class="category-icon">◈</span><strong>UI / UX</strong><small>Interface design</small></a>
+   <a class="category" data-category="Dashboards" href="dashboards.html"><span class="category-icon">▦</span><strong>Dashboards</strong><small>Business systems</small></a>
+   <a class="category" data-category="Templates" href="templates.html"><span class="category-icon">▤</span><strong>Templates</strong><small>Digital assets</small></a>
+   <a class="category" data-category="AI Tools" href="ai-tools.html"><span class="category-icon">✧</span><strong>AI Tools</strong><small>Smart solutions</small></a>
+   <a class="category" data-category="E-commerce" href="ecommerce.html"><span class="category-icon">🛍</span><strong>E-commerce</strong><small>Online selling</small></a>
+   <a class="category" data-category="Business" href="business-tools.html"><span class="category-icon">▥</span><strong>Business Tools</strong><small>Manage operations</small></a>
+  </div>
+ </div>
+</section>
+
+<section id="featured" style="padding-top:5px">
+ <div class="container">
+  <div class="slider-shell">
+   <div class="slider-top">
+    <div><span class="eyebrow">Project Spotlight</span><h3>Featured Projects</h3></div>
+    <div class="slider-controls no-print">
+     <button type="button" id="prevSlide" aria-label="Previous project">‹</button>
+     <button type="button" id="nextSlide" aria-label="Next project">›</button>
+    </div>
+   </div>
+   <div id="featureContent" aria-live="polite"></div>
+   <div class="slide-dots no-print" id="slideDots"></div>
+  </div>
+ </div>
+</section>
+
+<section id="projects" class="projects-section">
+ <div class="container">
+  <div class="section-head">
+   <span class="eyebrow">Project Marketplace</span>
+   <h2>Explore My Digital Projects</h2>
+   <p>Review project details and available demos. Demo access depends on each project's current stage.</p>
+  </div>
+  <div class="project-toolbar">
+   <span class="project-count" id="projectCount">Projects</span>
+   <input class="search" id="projectSearch" type="search" placeholder="Search projects or tools..." aria-label="Search projects">
+  </div>
+  <div class="project-grid" id="projectGrid"></div>
+  <p class="muted" style="font-size:11px;margin-top:20px">Project preview artwork is illustrative. Availability, features and demo links are shown individually; not every project is publicly available or ready for purchase.</p>
+ </div>
+</section>
+
+<section id="about">
+ <div class="container about-grid">
+  <div class="about-copy">
+   <span class="eyebrow">About MyHub</span>
+   <h2>Technology should solve real problems.</h2>
+   <p class="muted">I'm Amila Ruwan, developing digital products and business-focused applications under MyHub Digital Solutions.</p>
+   <p class="muted">This portfolio brings my website, app and interface projects together in one place. Explore each project to understand its purpose, suitable business use cases, tools and demo options.</p>
+   <a href="#projects" class="btn" style="margin-top:10px">Explore My Work ↗</a>
+  </div>
+  <div class="info-panel">
+   <h3>What I can build</h3>
+   <div class="service"><span class="service-icon">↗</span><div><b>Business Websites</b><small>Responsive websites, landing pages and online platforms.</small></div></div>
+   <div class="service"><span class="service-icon">▣</span><div><b>Android & Mobile Apps</b><small>Useful apps and mobile-first business tools.</small></div></div>
+   <div class="service"><span class="service-icon">▦</span><div><b>Dashboards & Management Systems</b><small>Sales, inventory and operational interfaces.</small></div></div>
+   <div class="service"><span class="service-icon">◈</span><div><b>UI/UX & Digital Products</b><small>Interface concepts, templates and customized experiences.</small></div></div>
+  </div>
+ </div>
+</section>
+
+<section id="skills" style="background:#f4f7fc">
+ <div class="container">
+  <div class="section-head">
+   <span class="eyebrow">Tools & Technologies</span>
+   <h2>My Development Toolkit</h2>
+   <p>Tools used or explored across my projects.</p>
+  </div>
+  <div class="skills-grid">
+   <div class="skill"><span class="skill-icon">▲</span>Next.js<small>Web Framework</small></div>
+   <div class="skill"><span class="skill-icon">⚛</span>React<small>User Interfaces</small></div>
+   <div class="skill"><span class="skill-icon">▣</span>React Native<small>Mobile Apps</small></div>
+   <div class="skill"><span class="skill-icon">🚀</span>Expo<small>App Development</small></div>
+   <div class="skill"><span class="skill-icon">🔥</span>Firebase<small>Backend Services</small></div>
+   <div class="skill"><span class="skill-icon">JS</span>JavaScript<small>Programming</small></div>
+   <div class="skill"><span class="skill-icon">⑂</span>Git & GitHub<small>Version Control</small></div>
+   <div class="skill"><span class="skill-icon">◈</span>Responsive UI<small>Mobile-first Design</small></div>
+  </div>
+ </div>
+</section>
+
+<section>
+ <div class="container cta">
+  <div><span class="eyebrow">Let's Work Together</span><h2>Have an idea for a website or app?</h2><p>Let's discuss a digital solution for your business.</p></div>
+  <a class="btn" href="https://wa.me/94773317144" target="_blank" rel="noopener noreferrer">Start a Conversation ↗</a>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="container">
+  <div class="section-head">
+   <span class="eyebrow">Get In Touch</span>
+   <h2>Let's Talk About Your Project</h2>
+   <p>Contact MyHub Digital Solutions for website, app and digital product enquiries.</p>
+  </div>
+  <div class="contact-grid">
+   <div class="contact-item"><div class="contact-icon">💬</div><h3>WhatsApp</h3><p>Discuss your project or ask about a demo.</p><a href="https://wa.me/94773317144" target="_blank" rel="noopener noreferrer">Chat on WhatsApp ↗</a></div>
+   <div class="contact-item"><div class="contact-icon">🌐</div><h3>Explore Projects</h3><p>Browse available project categories.</p><a href="#projects">View Project List ↗</a></div>
+   <div class="contact-item"><div class="contact-icon">💻</div><h3>GitHub</h3><p>Public developer profile link to be added.</p><a href="#contact">GitHub link coming soon</a></div>
+  </div>
+  <div class="no-print" style="text-align:center;margin-top:28px">
+   <button class="btn" type="button" id="printButton">⬇ Save Portfolio as PDF</button>
+   <p class="muted" style="font-size:11px">Choose “Save as PDF” in the print menu.</p>
+  </div>
+ </div>
+</section>
+
+<footer><div class="container">© <span id="year"></span> <strong>MyHub Digital Solutions</strong> · Created by Amila Ruwan · Sri Lanka</div></footer>
+
+<div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="modal-box">
+  <button class="modal-close" id="modalClose" aria-label="Close project details">×</button>
+  <div class="modal-head"><span class="eyebrow" id="modalCategory">Project Details</span><h2 id="modalTitle">Project</h2><p id="modalSubtitle"></p></div>
+  <div class="modal-content" id="modalContent"></div>
+ </div>
+</div>
+
+<script>
+const projects = [
+ {
+  id:"lanka-meet",name:"Lanka Meet",category:"Web",status:"In Progress",statusType:"progress",
+  subtitle:"Classified advertisements website",
+  description:"A classified ads platform concept for users to browse listings and publish advertisements. Some payment and approval processes may still be under development.",
+  purpose:"Help people discover and publish classified advertisements through a website.",
+  businesses:["Classified advertising","Local marketplaces","Community listing services"],
+  features:["Advertisement listings","User accounts","Image-based ads","Payment and approval workflow"],
+  tools:["Next.js","Firebase","ImageKit"],
+  demo:"https://lanka-meet1.vercel.app",demoLabel:"Open Website Demo",demoNote:"The website may change while it is being developed."
+ },
+ {
+  id:"myhub-marketplace",name:"MyHub Digital Solutions",category:"Web",status:"In Progress",statusType:"progress",
+  subtitle:"Digital products marketplace",
+  description:"A marketplace concept for presenting websites, apps, UI/UX designs, templates and digital business solutions in one place.",
+  purpose:"Let customers explore digital products, understand their benefits and request a demo or customization.",
+  businesses:["Freelancers","Small businesses","Digital product sellers","Startups"],
+  features:["Product categories","Project descriptions","Demo links","Customer contact","Product showcases"],
+  tools:["Next.js","React","CSS"],
+  demo:"",demoLabel:"Demo not published",demoNote:"A public demo URL has not been configured for this project."
+ },
+ {
+  id:"perfumebusiness",name:"PerfumeBusiness",category:"Apps",status:"In Development",statusType:"progress",
+  subtitle:"Perfume shop management app",
+  description:"A mobile app concept designed to organize perfume shop operations, stock, sales, customer credit and investment records.",
+  purpose:"Give a small perfume shop a simpler way to manage daily operations.",
+  businesses:["Perfume shops","Beauty product stores","Small retail businesses"],
+  features:["Sales tracking","Inventory management","Credit records","Investment tracking"],
+  tools:["React Native","Expo","TypeScript"],
+  demo:"",demoLabel:"App demo not published",demoNote:"A public web demo or app download has not been configured."
+ },
+ {
+  id:"myhub-app",name:"MY HUB App",category:"Apps",status:"In Development",statusType:"progress",
+  subtitle:"Digital project management hub",
+  description:"An Android app concept to organize digital projects and track progress from idea to ready-for-sale stages.",
+  purpose:"Keep website and app projects organized in one mobile hub.",
+  businesses:["Independent developers","Freelancers","Digital studios","Small development teams"],
+  features:["Project organization","Development statuses","Product catalogue concept","Progress tracking"],
+  tools:["React Native","Expo","TypeScript"],
+  demo:"",demoLabel:"App demo not published",demoNote:"A public app download or live demo has not been configured."
+ },
+ {
+  id:"uiux-concepts",name:"UI/UX Design Concepts",category:"UI/UX",status:"Concept",statusType:"progress",
+  subtitle:"Interface and user experience designs",
+  description:"A category for interface concepts, screen layouts, navigation patterns and responsive user experiences created for digital products.",
+  purpose:"Help businesses plan an easy-to-use product interface before or during development.",
+  businesses:["Startups","Online stores","Service businesses","App creators"],
+  features:["Screen layout concepts","Responsive design direction","Navigation planning","Interface improvements"],
+  tools:["UI/UX design","Figma when used","Responsive layout"],
+  demo:"",demoLabel:"Design demo not published",demoNote:"Add a real design prototype URL when one is ready."
+ },
+ {
+  id:"business-dashboard",name:"Business Dashboards",category:"Dashboards",status:"Concept",statusType:"progress",
+  subtitle:"Sales and operations interfaces",
+  description:"A showcase category for business dashboards, inventory interfaces and reporting tools.",
+  purpose:"Help a business view its operational information in a more organized interface.",
+  businesses:["Retail stores","Small businesses","Inventory-based businesses","Service teams"],
+  features:["Dashboard layouts","Sales summaries","Stock overview concepts","Management interface"],
+  tools:["React","JavaScript","Dashboard UI"],
+  demo:"",demoLabel:"Dashboard demo not published",demoNote:"Add a live dashboard URL when it is available."
+ },
+ {
+  id:"digital-templates",name:"Digital Templates",category:"Templates",status:"Coming Soon",statusType:"progress",
+  subtitle:"Reusable digital assets",
+  description:"A planned category for reusable website templates, interface kits and digital resources.",
+  purpose:"Give customers a starting point for building or improving their own digital products.",
+  businesses:["Freelancers","Agencies","Small businesses","Designers"],
+  features:["Reusable layouts","Template previews","Product descriptions","Future download links"],
+  tools:["HTML","CSS","UI/UX"],
+  demo:"",demoLabel:"Templates coming soon",demoNote:"Individual templates and download links will be added when ready."
+ },
+ {
+  id:"ai-tools",name:"AI Tools & Bots",category:"AI Tools",status:"Planned",statusType:"progress",
+  subtitle:"AI-powered business helpers",
+  description:"A planned category for AI assistants and business automation ideas.",
+  purpose:"Explore ways AI could help businesses answer questions, organize work or support customers.",
+  businesses:["Online stores","Customer support teams","Service providers","Small businesses"],
+  features:["AI assistant concepts","Business workflow ideas","Tool descriptions","Future live demos"],
+  tools:["AI integrations when implemented","Web technologies"],
+  demo:"",demoLabel:"AI demo not published",demoNote:"Only tested, working demos will be linked here."
+ },
+ {
+  id:"ecommerce-concept",name:"E-commerce Solutions",category:"E-commerce",status:"Planned",statusType:"progress",
+  subtitle:"Online selling experiences",
+  description:"A category for online shop concepts and digital storefront experiences.",
+  purpose:"Help a business present products online and guide customers toward purchasing.",
+  businesses:["Retail shops","Beauty stores","Clothing shops","Local brands"],
+  features:["Product catalogue concepts","Responsive storefronts","Shopping journey design","Business contact options"],
+  tools:["Web technologies","React when implemented"],
+  demo:"",demoLabel:"Store demo not published",demoNote:"Add a verified live store URL when available."
+ },
+ {
+  id:"business-tools",name:"Business Tools",category:"Business",status:"In Development",statusType:"progress",
+  subtitle:"Practical business management solutions",
+  description:"A category for small-business tools such as inventory, sales tracking and management workflows.",
+  purpose:"Reduce manual work and make everyday business processes easier to organize.",
+  businesses:["Small retailers","Independent shops","Local service providers"],
+  features:["Business workflow planning","Stock and sales concepts","Management interfaces","Mobile-friendly layouts"],
+  tools:["React Native","Expo","Web technologies"],
+  demo:"",demoLabel:"Tool demo not published",demoNote:"A live demo will be added when a tool is ready to try."
+ }
+];
+
+const categoryButtons=[...document.querySelectorAll(".category")];
+const grid=document.getElementById("projectGrid");
+const count=document.getElementById("projectCount");
+const search=document.getElementById("projectSearch");
+let activeCategory=document.body.dataset.pageCategory||"All";
+categoryButtons.forEach(button=>button.classList.toggle("active",button.dataset.category===activeCategory));
+const projectHeading=document.querySelector("#projects .section-head h2");
+const categoryTitles={
+  All:"Explore My Digital Projects",
+  Web:"Website Projects",
+  Apps:"Mobile App Projects",
+  "UI/UX":"UI / UX Projects",
+  Dashboards:"Dashboard Projects",
+  Templates:"Digital Templates",
+  "AI Tools":"AI Tools",
+  "E-commerce":"E-commerce Projects",
+  Business:"Business Tools"
+};
+if(projectHeading) projectHeading.textContent=categoryTitles[activeCategory]||"Explore My Digital Projects";
+let slideIndex=0;
+const featuredIds=["lanka-meet","myhub-marketplace","perfumebusiness","myhub-app","business-dashboard"];
+const artClasses={"Web":"","Apps":"art-amber","UI/UX":"art-purple","Dashboards":"art-cyan","Templates":"art-pink","AI Tools":"art-purple","E-commerce":"art-green","Business":"art-cyan"};
+const artIcons={"Web":"🌐","Apps":"📱","UI/UX":"◈","Dashboards":"▦","Templates":"▤","AI Tools":"✧","E-commerce":"🛍","Business":"▥"};
+
+function escapeHtml(value){
+ return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function artMarkup(p){
+ const klass=artClasses[p.category]||"";
+ if(p.category==="Apps"){
+  return `<div class="project-art ${klass}"><div class="phone-mock"><div class="phone-label">${escapeHtml(p.name.slice(0,15).toUpperCase())}</div><div class="phone-row"></div><div class="phone-row"></div><div class="phone-row"></div></div><div class="phone-mock"><div class="phone-label">OVERVIEW</div><div class="phone-row"></div><div class="phone-row"></div><div class="phone-row"></div></div></div>`;
+ }
+ return `<div class="project-art ${klass}"><div class="art-screen"><div class="screen-top"><i class="screen-dot"></i><i class="screen-dot"></i><i class="screen-dot"></i><span class="screen-brand">${escapeHtml(p.name.toUpperCase().slice(0,24))}</span></div><div class="screen-title">${escapeHtml(p.subtitle)}</div><div class="screen-line"></div><div class="screen-line short"></div><div class="screen-buttons"><i></i><i></i></div></div></div>`;
+}
+function cardMarkup(p){
+ const isLive=Boolean(p.demo);
+ const statusClass=isLive?"status live":"status";
+ const statusText=isLive?"Demo available":p.status;
+ return `<article class="project-card">
+  ${artMarkup(p)}
+  <div class="project-body">
+   <div class="project-top"><h3>${escapeHtml(p.name)}</h3><span class="${statusClass}">${escapeHtml(statusText)}</span></div>
+   <p>${escapeHtml(p.description)}</p>
+   <div class="pills"><span class="pill">${escapeHtml(p.category)}</span>${p.tools.slice(0,2).map(t=>`<span class="pill">${escapeHtml(t)}</span>`).join("")}</div>
+   <div class="project-actions">
+    ${isLive?`<a class="btn" href="${escapeHtml(p.demo)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.demoLabel)} ↗</a>`:`<button class="details-btn" type="button" data-details="${escapeHtml(p.id)}">${escapeHtml(p.demoLabel)}</button>`}
+    <button class="details-btn" type="button" data-details="${escapeHtml(p.id)}">View Details ↗</button>
+   </div>
+  </div>
+ </article>`;
+}
+function renderProjects(){
+ const query=search.value.trim().toLowerCase();
+ const filtered=projects.filter(p=>{
+  const categoryMatch=activeCategory==="All"||p.category===activeCategory;
+  const searchMatch=[p.name,p.category,p.subtitle,p.description,...p.tools,...p.businesses].join(" ").toLowerCase().includes(query);
+  return categoryMatch&&searchMatch;
+ });
+ count.textContent=`${filtered.length} project${filtered.length===1?"":"s"} · ${activeCategory==="All"?"All categories":activeCategory}`;
+ grid.innerHTML=filtered.length?filtered.map(cardMarkup).join(""):`<div class="empty-state"><strong>No matching projects yet.</strong><br>Try another category or search term.</div>`;
+}
+function chooseCategory(category){
+ activeCategory=category;
+ categoryButtons.forEach(b=>b.classList.toggle("active",b.dataset.category===category));
+ renderProjects();
+}
+categoryButtons.forEach(button=>button.addEventListener("click",()=>{
+ chooseCategory(button.dataset.category);
+ document.getElementById("projects").scrollIntoView({behavior:"smooth",block:"start"});
+}));
+search.addEventListener("input",renderProjects);
+grid.addEventListener("click",e=>{
+ const button=e.target.closest("[data-details]");
+ if(button)openDetails(button.dataset.details);
+});
+function openDetails(id){
+ const p=projects.find(x=>x.id===id);
+ if(!p)return;
+ document.getElementById("modalCategory").textContent=p.category+" · "+p.status;
+ document.getElementById("modalTitle").textContent=p.name;
+ document.getElementById("modalSubtitle").textContent=p.subtitle;
+ const tools=p.tools.map(x=>`<span class="detail-tag">${escapeHtml(x)}</span>`).join("");
+ const businesses=p.businesses.map(x=>`<li>${escapeHtml(x)}</li>`).join("");
+ const features=p.features.map(x=>`<li>${escapeHtml(x)}</li>`).join("");
+ const demo=p.demo?`<a class="btn" href="${escapeHtml(p.demo)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.demoLabel)} ↗</a>`:`<p class="notice">${escapeHtml(p.demoNote)}</p>`;
+ document.getElementById("modalContent").innerHTML=`
+  <div class="detail-block"><h3>About this project</h3><p>${escapeHtml(p.description)}</p></div>
+  <div class="detail-block"><h3>What it is useful for</h3><p>${escapeHtml(p.purpose)}</p></div>
+  <div class="detail-block"><h3>Features</h3><ul>${features}</ul></div>
+  <div class="detail-block"><h3>Suitable businesses</h3><ul>${businesses}</ul></div>
+  <div class="detail-block"><h3>Tools & technologies</h3><div class="detail-tags">${tools}</div></div>
+  <div class="modal-actions">${demo}<a class="btn light" href="https://wa.me/94773317144?text=${encodeURIComponent("Hi, I would like to know more about "+p.name+".")}" target="_blank" rel="noopener noreferrer">Ask on WhatsApp ↗</a></div>`;
+ const modal=document.getElementById("projectModal");
+ modal.classList.add("open");document.body.classList.add("locked");
+ document.getElementById("modalClose").focus();
+}
+function closeModal(){
+ document.getElementById("projectModal").classList.remove("open");
+ document.body.classList.remove("locked");
+}
+document.getElementById("modalClose").addEventListener("click",closeModal);
+document.getElementById("projectModal").addEventListener("click",e=>{if(e.target.id==="projectModal")closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+
+function renderFeature(){
+ const p=projects.find(x=>x.id===featuredIds[slideIndex])||projects[0];
+ const content=document.getElementById("featureContent");
+ content.innerHTML=`<div class="feature-slide">
+  <div><span class="feature-tag">${escapeHtml(p.category)} · FEATURED PROJECT</span>
+   <h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.description)}</p>
+   <div class="hero-actions">
+    <button class="btn" type="button" data-feature-details="${escapeHtml(p.id)}">Explore Project ↗</button>
+    ${p.demo?`<a class="btn glass" href="${escapeHtml(p.demo)}" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>`:`<a class="btn glass" href="#projects">View Projects</a>`}
+   </div>
+  </div>
+  <div class="feature-art"><div class="feature-icon">${artIcons[p.category]||"✦"}</div></div>
+ </div>`;
+ content.querySelector("[data-feature-details]").addEventListener("click",()=>openDetails(p.id));
+ const dots=document.getElementById("slideDots");
+ dots.innerHTML=featuredIds.map((id,i)=>`<button type="button" aria-label="Show featured project ${i+1}" class="${i===slideIndex?"active":""}" data-slide="${i}"></button>`).join("");
+ dots.querySelectorAll("[data-slide]").forEach(b=>b.addEventListener("click",()=>{slideIndex=Number(b.dataset.slide);renderFeature()}));
+}
+document.getElementById("prevSlide").addEventListener("click",()=>{slideIndex=(slideIndex+featuredIds.length-1)%featuredIds.length;renderFeature()});
+document.getElementById("nextSlide").addEventListener("click",()=>{slideIndex=(slideIndex+1)%featuredIds.length;renderFeature()});
+
+const menuToggle=document.getElementById("menuToggle");
+const navLinks=document.getElementById("navLinks");
+menuToggle.addEventListener("click",()=>{
+ const open=navLinks.classList.toggle("open");
+ menuToggle.setAttribute("aria-expanded",String(open));
+ menuToggle.textContent=open?"×":"☰";
+});
+navLinks.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{
+ navLinks.classList.remove("open");
+ menuToggle.setAttribute("aria-expanded","false");
+ menuToggle.textContent="☰";
+}));
+document.getElementById("printButton").addEventListener("click",()=>window.print());
+document.getElementById("year").textContent=new Date().getFullYear();
+renderProjects();
+renderFeature();
+</script>
+</body>
+</html>
