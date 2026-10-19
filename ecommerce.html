@@ -262,6 +262,147 @@ footer strong{color:#fff}
  footer{background:#fff;color:#334155}
  footer strong{color:#07172f}
 }
+
+/* MYHUB CATEGORY PAGE BLUE-WHITE REFRESH */
+:root {
+  --blue: #1769ff;
+  --line: #dce8fb;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background:
+    radial-gradient(ellipse at 5% 8%, rgba(37,99,235,.12), transparent 35%),
+    radial-gradient(ellipse at 95% 35%, rgba(96,165,250,.13), transparent 32%),
+    linear-gradient(145deg, #f4f8ff 0%, #ffffff 48%, #edf4ff 100%) !important;
+  background-attachment: fixed !important;
+}
+section,
+.projects-section {
+  background: transparent !important;
+}
+.section-head {
+  position: relative;
+  padding-top: 12px;
+}
+.section-head h2 {
+  color: #102b55;
+  letter-spacing: -0.7px;
+}
+.section-head p {
+  color: #62748f;
+  line-height: 1.8;
+}
+.category-strip {
+  gap: 14px !important;
+  margin-top: 24px;
+}
+.category {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #dbe7fb !important;
+  border-radius: 20px !important;
+  background: rgba(255,255,255,.9) !important;
+  box-shadow: 0 8px 24px rgba(23,70,140,.055);
+  transition: transform .22s ease, border-color .22s ease,
+              box-shadow .22s ease !important;
+}
+.category:hover,
+.category.active {
+  border-color: #7eaeff !important;
+  background: linear-gradient(145deg,#eaf2ff,#ffffff) !important;
+  box-shadow: 0 12px 28px rgba(23,105,255,.13) !important;
+  transform: translateY(-3px);
+}
+.category-icon {
+  background: linear-gradient(135deg,#e2edff,#f3f7ff) !important;
+  color: #1769ff !important;
+  border: 1px solid #d8e7ff;
+}
+.projects-section {
+  padding-top: 38px;
+}
+.project-toolbar {
+  gap: 14px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+}
+.project-count {
+  color: #17427e;
+  font-weight: 800;
+}
+.search {
+  border: 1px solid #d6e4fa !important;
+  border-radius: 14px !important;
+  background: rgba(255,255,255,.94) !important;
+  box-shadow: 0 5px 18px rgba(23,70,140,.045);
+  outline-color: #1769ff;
+}
+.project-grid {
+  gap: 22px !important;
+  align-items: stretch;
+}
+.project-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #dbe7fb !important;
+  border-radius: 23px !important;
+  background: linear-gradient(150deg,#ffffff 0%,#f8fbff 100%) !important;
+  box-shadow: 0 10px 30px rgba(24,65,125,.075) !important;
+  transition: transform .24s ease, border-color .24s ease,
+              box-shadow .24s ease !important;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: #91baff !important;
+  box-shadow: 0 20px 42px rgba(23,105,255,.15) !important;
+}
+.project-card img {
+  max-width: 100%;
+}
+.project-card .pill {
+  border-color: #d9e7ff;
+  background: #edf4ff;
+  color: #2058ad;
+  border-radius: 999px;
+}
+.project-card button,
+.project-card .btn,
+.project-card a.btn {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.project-card button:hover,
+.project-card .btn:hover,
+.project-card a.btn:hover {
+  transform: translateY(-2px);
+}
+.category,
+.project-card,
+.project-count,
+.search {
+  -webkit-tap-highlight-color: transparent;
+}
+@media (max-width: 700px) {
+  .category-strip {
+    gap: 9px !important;
+  }
+  .project-grid {
+    gap: 14px !important;
+  }
+  .project-card {
+    border-radius: 18px !important;
+  }
+  .section-head h2 {
+    letter-spacing: -.4px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .category, .project-card { transition: none !important; }
+}
+
 </style>
 </head>
 <body data-page-category="E-commerce">
