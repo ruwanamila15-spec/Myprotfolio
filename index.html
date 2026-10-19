@@ -609,10 +609,17 @@ function chooseCategory(category){
  categoryButtons.forEach(b=>b.classList.toggle("active",b.dataset.category===category));
  renderProjects();
 }
-categoryButtons.forEach(button=>button.addEventListener("click",()=>{
- chooseCategory(button.dataset.category);
- document.getElementById("projects").scrollIntoView({behavior:"smooth",block:"start"});
-}));
+categoryButtons.forEach(button=>{
+  // Let category links navigate to their own HTML pages.
+  if (button.tagName === "A" && button.hasAttribute("href")) return;
+  button.addEventListener("click",()=>{
+    chooseCategory(button.dataset.category);
+    document.getElementById("projects").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+  });
+});
 search.addEventListener("input",renderProjects);
 grid.addEventListener("click",e=>{
  const button=e.target.closest("[data-details]");
